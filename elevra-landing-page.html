@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elevra Digital — Find Out What's Really Holding Your Business Back</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1E90FF;
+    --blue-dim: rgba(30,144,255,0.12);
+    --blue-glow: rgba(30,144,255,0.25);
+    --navy: #050816;
+    --navy2: #080d22;
+    --navy3: #0c1232;
+    --white: #ffffff;
+    --white-80: rgba(255,255,255,0.8);
+    --white-50: rgba(255,255,255,0.5);
+    --white-20: rgba(255,255,255,0.2);
+    --white-10: rgba(255,255,255,0.1);
+    --white-06: rgba(255,255,255,0.06);
+    --white-04: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.15);
+    --font: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 5%;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(5,8,22,0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-icon { width: 38px; height: 38px; }
+
+  .nav-wordmark {
+    font-size: 15px; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--white);
+  }
+  .nav-wordmark span { color: var(--blue); }
+
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 22px; background: var(--blue);
+    color: var(--white); border: none; border-radius: 8px;
+    font-family: var(--font); font-size: 14px; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: #3d9fff; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 5% 80px;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -200px; right: -100px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(30,144,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px;
+    background: var(--blue-dim);
+    border: 1px solid rgba(30,144,255,0.3);
+    border-radius: 100px;
+    font-size: 12px; font-weight: 600;
+    color: var(--blue); letter-spacing: 0.06em;
+    text-transform: uppercase; margin-bottom: 28px;
+  }
+
+  .eyebrow-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--blue); animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-h1 {
+    font-size: clamp(36px, 4.5vw, 58px);
+    font-weight: 800; line-height: 1.1;
+    letter-spacing: -0.03em; color: var(--white); margin-bottom: 24px;
+  }
+
+  .hero-h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--blue) 0%, #6bb8ff 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 17px; font-weight: 400; line-height: 1.7;
+    color: var(--white-50); margin-bottom: 40px; max-width: 480px;
+  }
+
+  .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 28px; background: var(--blue);
+    color: var(--white); border: none; border-radius: 10px;
+    font-family: var(--font); font-size: 15px; font-weight: 700;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.2s; position: relative; overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.1), transparent);
+  }
+
+  .btn-primary:hover {
+    background: #3d9fff; transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(30,144,255,0.4);
+  }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-price { font-size: 12px; font-weight: 500; opacity: 0.75; }
+
+  .hero-trust {
+    font-size: 13px; color: var(--white-50);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .trust-icon { color: var(--blue); font-size: 16px; }
+
+  /* BLUEPRINT MOCKUP */
+  .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
+
+  .blueprint-card {
+    width: 340px;
+    background: rgba(12,18,50,0.8);
+    border: 1px solid var(--border-hover);
+    border-radius: 20px; padding: 28px;
+    backdrop-filter: blur(12px); position: relative;
+    transform: perspective(1000px) rotateY(-8deg) rotateX(4deg);
+    transform-style: preserve-3d; transition: transform 0.5s ease;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.08);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .blueprint-card:hover { transform: perspective(1000px) rotateY(-4deg) rotateX(2deg); }
+
+  @keyframes float {
+    0%, 100% { transform: perspective(1000px) rotateY(-8deg) rotateX(4deg) translateY(0); }
+    50% { transform: perspective(1000px) rotateY(-8deg) rotateX(4deg) translateY(-12px); }
+  }
+
+  .bp-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+
+  .bp-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--blue);
+    background: var(--blue-dim); border: 1px solid rgba(30,144,255,0.2);
+    padding: 4px 10px; border-radius: 100px;
+  }
+
+  .bp-logo { width: 28px; height: 28px; opacity: 0.6; }
+
+  .bp-title { font-size: 18px; font-weight: 800; color: var(--white); margin-bottom: 4px; letter-spacing: -0.02em; }
+  .bp-sub { font-size: 12px; color: var(--white-50); margin-bottom: 20px; }
+
+  .bp-score-row { display: flex; gap: 12px; margin-bottom: 20px; }
+
+  .bp-score {
+    flex: 1; background: var(--white-06); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px; text-align: center;
+  }
+
+  .bp-score-num {
+    font-size: 28px; font-weight: 800; letter-spacing: -0.04em;
+    display: block; margin-bottom: 2px;
+  }
+  .bp-score-num.green { color: #4ade80; }
+  .bp-score-num.amber { color: #fbbf24; }
+  .bp-score-num.blue  { color: var(--blue); }
+
+  .bp-score-label {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--white-50);
+  }
+
+  .bp-section-label {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--white-50); margin-bottom: 10px;
+  }
+
+  .bp-bar-row { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .bp-bar-item { display: flex; align-items: center; gap: 10px; }
+  .bp-bar-name { font-size: 11px; color: var(--white-80); width: 80px; flex-shrink: 0; }
+
+  .bp-bar-track {
+    flex: 1; height: 4px; background: var(--white-10);
+    border-radius: 100px; overflow: hidden;
+  }
+
+  .bp-bar-fill {
+    height: 100%; border-radius: 100px;
+    background: var(--blue); transition: width 1.5s ease;
+  }
+  .bp-bar-fill.green { background: #4ade80; }
+  .bp-bar-fill.amber { background: #fbbf24; }
+
+  .bp-divider { height: 1px; background: var(--border); margin: 16px 0; }
+
+  .bp-roadmap-label {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--white-50); margin-bottom: 12px;
+  }
+
+  .bp-roadmap-items { display: flex; flex-direction: column; gap: 8px; }
+
+  .bp-roadmap-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px; background: var(--white-04);
+    border: 1px solid var(--border); border-radius: 8px;
+  }
+
+  .bp-day-badge {
+    font-size: 9px; font-weight: 700; color: var(--blue);
+    background: var(--blue-dim); padding: 2px 7px; border-radius: 4px;
+    white-space: nowrap; letter-spacing: 0.04em;
+  }
+
+  .bp-roadmap-text { font-size: 11px; color: var(--white-80); }
+
+  .glow-ring {
+    position: absolute; inset: -30px; border-radius: 30px;
+    background: radial-gradient(ellipse at 50% 50%, rgba(30,144,255,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* SECTION WRAPPER */
+  section { position: relative; z-index: 1; }
+
+  .section-inner { max-width: 1100px; margin: 0 auto; padding: 100px 5%; }
+
+  .section-eyebrow {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--blue); margin-bottom: 16px; display: block;
+  }
+
+  .section-h2 {
+    font-size: clamp(30px, 3.5vw, 44px); font-weight: 800;
+    letter-spacing: -0.03em; line-height: 1.15;
+    color: var(--white); margin-bottom: 20px;
+  }
+
+  .section-h2 em { font-style: normal; color: var(--white-50); }
+  .section-sub { font-size: 16px; color: var(--white-50); line-height: 1.7; max-width: 540px; }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  /* PROBLEM SECTION */
+  .problem-section { background: linear-gradient(180deg, transparent, rgba(30,144,255,0.03), transparent); }
+  .problem-header { text-align: center; margin-bottom: 64px; }
+
+  .problem-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+  .prob-card {
+    background: var(--white-04); border: 1px solid var(--border);
+    border-radius: 16px; padding: 36px 32px;
+    transition: border-color 0.3s, background 0.3s; cursor: default;
+  }
+
+  .prob-card:hover { border-color: rgba(30,144,255,0.25); background: rgba(30,144,255,0.05); }
+
+  .prob-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--blue-dim); border: 1px solid rgba(30,144,255,0.2);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+  }
+  .prob-icon svg { width: 22px; height: 22px; color: var(--blue); }
+
+  .prob-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 10px; letter-spacing: -0.01em; }
+  .prob-desc { font-size: 14px; color: var(--white-50); line-height: 1.65; }
+
+  /* BEFORE vs AFTER */
+  .bva-section { background: var(--navy2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .bva-header { text-align: center; margin-bottom: 64px; }
+
+  .bva-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .bva-col {
+    background: var(--white-04);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bva-col.after {
+    border-color: rgba(30,144,255,0.25);
+    background: rgba(30,144,255,0.05);
+  }
+
+  .bva-col.after::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  }
+
+  .bva-col-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 28px; display: flex;
+    align-items: center; gap: 8px;
+  }
+
+  .bva-col-label.before-label { color: var(--white-50); }
+  .bva-col-label.after-label { color: var(--blue); }
+
+  .bva-label-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+  }
+  .before-label .bva-label-dot { background: var(--white-50); }
+  .after-label .bva-label-dot { background: var(--blue); }
+
+  .bva-items { display: flex; flex-direction: column; gap: 16px; }
+
+  .bva-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 16px; border-radius: 10px;
+    font-size: 14px; font-weight: 500;
+  }
+
+  .bva-item.before-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    color: var(--white-50);
+  }
+
+  .bva-item.after-item {
+    background: rgba(30,144,255,0.07);
+    border: 1px solid rgba(30,144,255,0.15);
+    color: var(--white-80);
+  }
+
+  .bva-item-icon {
+    width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .before-item .bva-item-icon {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .after-item .bva-item-icon {
+    background: rgba(30,144,255,0.15);
+    border: 1px solid rgba(30,144,255,0.25);
+  }
+
+  .bva-item-icon svg { width: 12px; height: 12px; }
+  .before-item .bva-item-icon svg { color: var(--white-50); }
+  .after-item .bva-item-icon svg { color: var(--blue); }
+
+  .bva-separator {
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 24px;
+  }
+
+  .bva-vs {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--white-06); border: 1px solid var(--border-hover);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.06em;
+    color: var(--white-50);
+  }
+
+  /* INCLUDES SECTION */
+  .includes-header { text-align: center; margin-bottom: 64px; }
+  .includes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+  .inc-card {
+    background: var(--white-04); border: 1px solid var(--border);
+    border-radius: 16px; padding: 32px 28px;
+    position: relative; overflow: hidden; transition: all 0.3s;
+  }
+
+  .inc-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--blue), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+
+  .inc-card:hover { border-color: rgba(30,144,255,0.2); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+  .inc-card:hover::before { opacity: 1; }
+
+  .inc-number { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--blue); opacity: 0.7; margin-bottom: 14px; }
+  .inc-title { font-size: 17px; font-weight: 700; color: var(--white); margin-bottom: 8px; letter-spacing: -0.01em; }
+  .inc-desc { font-size: 13px; color: var(--white-50); line-height: 1.6; }
+
+  /* PROCESS SECTION */
+  .process-section { background: var(--navy2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .process-header { text-align: center; margin-bottom: 64px; }
+
+  .process-steps { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: nowrap; }
+
+  .process-step {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; position: relative; flex: 1;
+  }
+
+  .step-circle {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--white-06); border: 1px solid var(--border-hover);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px; position: relative; z-index: 1; transition: all 0.3s;
+  }
+  .step-circle svg { width: 24px; height: 24px; color: var(--blue); }
+  .process-step:hover .step-circle { background: var(--blue-dim); border-color: rgba(30,144,255,0.4); box-shadow: 0 0 30px rgba(30,144,255,0.2); }
+
+  .step-connector {
+    position: absolute; top: 31px;
+    left: calc(50% + 32px); right: calc(-50% + 32px);
+    height: 1px; background: linear-gradient(90deg, var(--blue), rgba(30,144,255,0.2));
+  }
+  .process-step:last-child .step-connector { display: none; }
+
+  .step-label { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .step-sub { font-size: 11px; color: var(--white-50); }
+
+  /* GUARANTEE SECTION */
+  .guarantee-section { background: linear-gradient(180deg, transparent, rgba(30,144,255,0.03), transparent); }
+
+  .guarantee-inner {
+    max-width: 760px; margin: 0 auto;
+    background: var(--white-04); border: 1px solid var(--border-hover);
+    border-radius: 24px; padding: 60px 64px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+
+  .guarantee-inner::before {
+    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 200px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  }
+
+  .guarantee-icon {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--blue-dim); border: 1px solid rgba(30,144,255,0.25);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 28px;
+  }
+  .guarantee-icon svg { width: 28px; height: 28px; color: var(--blue); }
+
+  .guarantee-badge {
+    display: inline-block; padding: 5px 14px;
+    background: var(--blue-dim); border: 1px solid rgba(30,144,255,0.3);
+    border-radius: 100px; font-size: 11px; font-weight: 700;
+    color: var(--blue); letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .guarantee-title {
+    font-size: clamp(22px, 3vw, 32px); font-weight: 800;
+    letter-spacing: -0.02em; color: var(--white); margin-bottom: 16px; line-height: 1.2;
+  }
+
+  .guarantee-text {
+    font-size: 16px; color: var(--white-50); line-height: 1.75;
+    max-width: 540px; margin: 0 auto 28px;
+  }
+
+  .guarantee-sig {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    padding-top: 28px; border-top: 1px solid var(--border);
+  }
+
+  .sig-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, #1E90FF, #6bb8ff);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800; color: var(--white);
+    flex-shrink: 0;
+  }
+
+  .sig-text { text-align: left; }
+  .sig-name { font-size: 14px; font-weight: 700; color: var(--white); }
+  .sig-role { font-size: 12px; color: var(--white-50); }
+
+  /* PRICING SECTION */
+  .pricing-card {
+    display: inline-block; background: var(--white-04);
+    border: 1px solid var(--border-hover); border-radius: 24px;
+    padding: 56px 72px; position: relative; overflow: hidden;
+    max-width: 560px; width: 100%; margin: 0 auto;
+  }
+
+  .pricing-card::before {
+    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 200px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  }
+
+  .pricing-glow {
+    position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+    width: 400px; height: 300px;
+    background: radial-gradient(circle, rgba(30,144,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .pricing-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue); margin-bottom: 8px; }
+  .pricing-headline { font-size: 17px; font-weight: 500; color: var(--white-50); margin-bottom: 20px; }
+
+  .pricing-amount {
+    font-size: 72px; font-weight: 800; letter-spacing: -0.05em;
+    color: var(--white); line-height: 1; margin-bottom: 8px;
+  }
+  .pricing-amount sup { font-size: 28px; vertical-align: super; font-weight: 600; }
+
+  .pricing-note { font-size: 13px; color: var(--white-50); margin-bottom: 12px; }
+
+  .pricing-value-prop {
+    font-size: 14px; color: var(--white-80); line-height: 1.6;
+    font-style: italic; padding: 16px 20px;
+    background: var(--blue-dim); border: 1px solid rgba(30,144,255,0.15);
+    border-radius: 10px; margin-bottom: 32px;
+  }
+
+  .pricing-features {
+    list-style: none; margin-bottom: 32px;
+    display: flex; flex-direction: column; gap: 12px; text-align: left;
+  }
+
+  .pricing-features li {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 14px; color: var(--white-80);
+  }
+
+  .check-icon {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.2);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .check-icon svg { width: 11px; height: 11px; color: #4ade80; }
+
+  .pricing-guarantee-note {
+    font-size: 12px; color: var(--white-50); text-align: center; margin-top: 16px;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+
+  .pricing-availability {
+    font-size: 13px; color: var(--white-50); text-align: center;
+    margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+
+  .avail-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #4ade80; flex-shrink: 0;
+    box-shadow: 0 0 6px rgba(74,222,128,0.6);
+    animation: pulse 2s infinite;
+  }
+
+  /* FAQ SECTION */
+  .faq-section { background: var(--navy2); border-top: 1px solid var(--border); }
+  .faq-header { text-align: center; margin-bottom: 64px; }
+
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+
+  .faq-item {
+    background: var(--white-04); padding: 32px 36px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .faq-item:hover { background: rgba(30,144,255,0.04); }
+
+  .faq-q {
+    font-size: 16px; font-weight: 700; color: var(--white);
+    margin-bottom: 10px; letter-spacing: -0.01em;
+  }
+
+  .faq-a { font-size: 14px; color: var(--white-50); line-height: 1.7; }
+
+  /* RISK REVERSAL */
+  .risk-section { text-align: center; }
+
+  .risk-inner {
+    max-width: 680px; margin: 0 auto;
+    background: var(--white-04); border: 1px solid var(--border-hover);
+    border-radius: 20px; padding: 48px 56px; position: relative; overflow: hidden;
+  }
+
+  .risk-inner::before {
+    content: ''; position: absolute;
+    top: 0; left: 50%; transform: translateX(-50%);
+    width: 120px; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(74,222,128,0.6), transparent);
+  }
+
+  .risk-icon {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
+  }
+  .risk-icon svg { width: 24px; height: 24px; color: #4ade80; }
+
+  .risk-title { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--white); margin-bottom: 14px; }
+  .risk-text { font-size: 15px; color: var(--white-50); line-height: 1.75; }
+  .risk-text strong { color: var(--white-80); font-weight: 600; }
+
+  /* FINAL CTA */
+  .final-cta {
+    text-align: center; background: var(--navy2);
+    border-top: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+
+  .final-cta::before {
+    content: ''; position: absolute;
+    top: -200px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(circle, rgba(30,144,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .final-h2 {
+    font-size: clamp(40px, 5vw, 64px); font-weight: 800;
+    letter-spacing: -0.04em; line-height: 1.05;
+    color: var(--white); margin-bottom: 20px;
+  }
+  .final-h2 .dim { color: var(--white-50); }
+  .final-sub { font-size: 16px; color: var(--white-50); margin-bottom: 48px; }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 5%; border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; color: var(--white-50);
+  }
+  footer a { color: var(--white-50); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+
+  /* ANIMATIONS */
+  .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  .stagger > * { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .stagger.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.05s; }
+  .stagger.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.1s; }
+  .stagger.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.15s; }
+  .stagger.visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.2s; }
+  .stagger.visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.25s; }
+  .stagger.visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.3s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; text-align: center; padding: 100px 5% 60px; }
+    .hero-sub { max-width: 100%; margin: 0 auto 40px; }
+    .hero-actions { justify-content: center; }
+    .hero-visual { display: none; }
+    .problem-cards { grid-template-columns: 1fr; }
+    .bva-grid { grid-template-columns: 1fr; }
+    .bva-separator { padding: 16px 0; }
+    .includes-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { flex-wrap: wrap; gap: 40px; }
+    .step-connector { display: none; }
+    .pricing-card { padding: 40px 28px; }
+    .guarantee-inner { padding: 40px 28px; }
+    .risk-inner { padding: 36px 24px; }
+    .faq-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .includes-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up, .stagger > *, .blueprint-card { transition: none; animation: none; }
+    .fade-up, .stagger > * { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg class="logo-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="navG" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#1535CC"/>
+          <stop offset="55%" stop-color="#1E90FF"/>
+          <stop offset="100%" stop-color="#00D8FF"/>
+        </linearGradient>
+      </defs>
+      <!-- Left vertical bar of E -->
+      <rect x="6" y="8" width="10" height="44" rx="2.5" fill="url(#navG)"/>
+      <!-- Top arm of E -->
+      <rect x="6" y="8" width="30" height="10" rx="2.5" fill="url(#navG)"/>
+      <!-- Bottom arm of E -->
+      <rect x="6" y="42" width="30" height="10" rx="2.5" fill="url(#navG)"/>
+      <!-- Middle arm becomes diagonal arrow shaft -->
+      <line x1="22" y1="33" x2="46" y2="9" stroke="url(#navG)" stroke-width="7" stroke-linecap="round"/>
+      <!-- Arrow head: corner at top-right -->
+      <polyline points="34,5 50,5 50,21" fill="none" stroke="url(#navG)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="nav-wordmark">ELEVRA <span>DIGITAL</span></span>
+  </a>
+  <a href="#pricing" class="nav-cta">Get My Blueprint</a>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      Launch Edition — Limited Availability
+    </div>
+    <h1 class="hero-h1">
+      Your business is leaking revenue.<br><em>You just can't see where.</em>
+    </h1>
+    <p class="hero-sub">
+      Most business owners are working harder than ever — and still not hitting their numbers. Not because they lack effort. Because they lack clarity. We'll show you exactly what's holding your business back, and give you a precise 90-day plan to fix it.
+    </p>
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-primary">
+        Find My Biggest Growth Opportunities
+        <span class="btn-price">— $97</span>
+      </a>
+    </div>
+    <div style="margin-top: 20px; display: flex; gap: 28px; flex-wrap: wrap;">
+      <div class="hero-trust">
+        <svg class="trust-icon" width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <path d="M7.5 1L9.2 5.2L13.8 5.6L10.5 8.5L11.6 13L7.5 10.6L3.4 13L4.5 8.5L1.2 5.6L5.8 5.2Z" fill="currentColor"/>
+        </svg>
+        Personally reviewed by the founder
+      </div>
+      <div class="hero-trust">
+        <svg class="trust-icon" width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <circle cx="7.5" cy="7.5" r="6.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M7.5 4v4l2.5 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        Delivered in 7 business days
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="glow-ring"></div>
+    <div class="blueprint-card">
+      <div class="bp-header">
+        <span class="bp-badge">Growth Blueprint</span>
+        <svg class="bp-logo" viewBox="0 0 60 60" fill="none">
+          <defs>
+            <linearGradient id="bpG" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#1535CC"/>
+              <stop offset="55%" stop-color="#1E90FF"/>
+              <stop offset="100%" stop-color="#00D8FF"/>
+            </linearGradient>
+          </defs>
+          <rect x="6" y="8" width="10" height="44" rx="2.5" fill="url(#bpG)"/>
+          <rect x="6" y="8" width="30" height="10" rx="2.5" fill="url(#bpG)"/>
+          <rect x="6" y="42" width="30" height="10" rx="2.5" fill="url(#bpG)"/>
+          <line x1="22" y1="33" x2="46" y2="9" stroke="url(#bpG)" stroke-width="7" stroke-linecap="round"/>
+          <polyline points="34,5 50,5 50,21" fill="none" stroke="url(#bpG)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="bp-title">Acme Corp — Q3 2025</div>
+      <div class="bp-sub">Strategic Business Assessment</div>
+
+      <div class="bp-score-row">
+        <div class="bp-score">
+          <span class="bp-score-num blue">72</span>
+          <span class="bp-score-label">Overall</span>
+        </div>
+        <div class="bp-score">
+          <span class="bp-score-num amber">58</span>
+          <span class="bp-score-label">Digital</span>
+        </div>
+        <div class="bp-score">
+          <span class="bp-score-num green">84</span>
+          <span class="bp-score-label">AI Ready</span>
+        </div>
+      </div>
+
+      <div class="bp-section-label">Performance Breakdown</div>
+      <div class="bp-bar-row">
+        <div class="bp-bar-item">
+          <span class="bp-bar-name">Marketing</span>
+          <div class="bp-bar-track"><div class="bp-bar-fill amber" style="width:52%"></div></div>
+        </div>
+        <div class="bp-bar-item">
+          <span class="bp-bar-name">Systems</span>
+          <div class="bp-bar-track"><div class="bp-bar-fill" style="width:79%"></div></div>
+        </div>
+        <div class="bp-bar-item">
+          <span class="bp-bar-name">Retention</span>
+          <div class="bp-bar-track"><div class="bp-bar-fill green" style="width:86%"></div></div>
+        </div>
+        <div class="bp-bar-item">
+          <span class="bp-bar-name">Revenue Ops</span>
+          <div class="bp-bar-track"><div class="bp-bar-fill amber" style="width:44%"></div></div>
+        </div>
+      </div>
+
+      <div class="bp-divider"></div>
+
+      <div class="bp-roadmap-label">90-Day Roadmap</div>
+      <div class="bp-roadmap-items">
+        <div class="bp-roadmap-item">
+          <span class="bp-day-badge">Days 1–30</span>
+          <span class="bp-roadmap-text">Fix funnel leaks + lead generation</span>
+        </div>
+        <div class="bp-roadmap-item">
+          <span class="bp-day-badge">Days 31–60</span>
+          <span class="bp-roadmap-text">Automate core business systems</span>
+        </div>
+        <div class="bp-roadmap-item">
+          <span class="bp-day-badge">Days 61–90</span>
+          <span class="bp-roadmap-text">Scale revenue channels with AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="section-divider"></div>
+
+
+<!-- PROBLEM SECTION -->
+<section class="problem-section">
+  <div class="section-inner">
+    <div class="problem-header fade-up">
+      <span class="section-eyebrow">The Real Problem</span>
+      <h2 class="section-h2">You don't have a marketing problem.<br><em>You have a clarity problem.</em></h2>
+      <p class="section-sub" style="margin: 0 auto; text-align: center;">The businesses that grow fastest aren't the ones that work hardest. They're the ones that know exactly where to focus — and why.</p>
+    </div>
+
+    <div class="problem-cards stagger">
+      <div class="prob-card">
+        <div class="prob-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 8v4M12 16h.01"/>
+          </svg>
+        </div>
+        <div class="prob-title">Spending without knowing why</div>
+        <p class="prob-desc">Marketing budgets going to channels, campaigns, and agencies — with no clear line between spend and result. Every month feels like a gamble.</p>
+      </div>
+
+      <div class="prob-card">
+        <div class="prob-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="prob-title">Working hard on the wrong things</div>
+        <p class="prob-desc">Your team is busy. The calendar is full. Yet growth feels stuck. The problem isn't effort — it's that the highest-leverage opportunities are invisible without the right lens.</p>
+      </div>
+
+      <div class="prob-card">
+        <div class="prob-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+            <path d="M2 20h20"/>
+          </svg>
+        </div>
+        <div class="prob-title">Decisions made in the dark</div>
+        <p class="prob-desc">No clear data on what's working. Pricing decisions, hiring, marketing — all based on instinct. One wrong call at the right moment costs more than you realize.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="section-divider"></div>
+
+
+<!-- BEFORE vs AFTER -->
+<section class="bva-section">
+  <div class="section-inner">
+    <div class="bva-header fade-up">
+      <span class="section-eyebrow">The Transformation</span>
+      <h2 class="section-h2">What clarity actually changes.</h2>
+      <p class="section-sub" style="margin: 0 auto; text-align:center;">The Blueprint doesn't add complexity to your business. It removes the fog — so you can see what matters and act with confidence.</p>
+    </div>
+
+    <div class="bva-grid fade-up">
+      <div class="bva-col before">
+        <div class="bva-col-label before-label">
+          <span class="bva-label-dot"></span>
+          Without Elevra
+        </div>
+        <div class="bva-items">
+          <div class="bva-item before-item">
+            <div class="bva-item-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="2" y1="6" x2="10" y2="6"/></svg>
+            </div>
+            Guessing what to focus on
+          </div>
+          <div class="bva-item before-item">
+            <div class="bva-item-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="2" y1="6" x2="10" y2="6"/></svg>
+            </div>
+            Random, reactive marketing
+          </div>
+          <div class="bva-item before-item">
+            <div class="bva-item-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="2" y1="6" x2="10" y2="6"/></svg>
+            </div>
+            Manual, repetitive processes
+          </div>
+          <div class="bva-item before-item">
+            <div class="bva-item-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="2" y1="6" x2="10" y2="6"/></svg>
+            </div>
+            No visibility into what works
+          </div>
+          <div class="bva-item before-item">
+            <div class="bva-item-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="2" y1="6" x2="10" y2="6"/></svg>
+            </div>
+            Decisions based on gut feeling
+          </div>
+        </div>
+      </div>
+
+      <div class="bva-separator">
+        <div class="bva-vs">VS</div>
+      </div>
+
+      <div class="bva-col after">
+        <div class="bva-col-label after-label">
+          <span class="bva-label-dot"></span>
+          After Your Blueprint
+        </div>
+        <div class="bva-items">
+          <div class="bva-item after-item">
+            <div class="bva-item-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg>
+            </div>
+            Clear priorities, ranked by impact
+          </div>
+          <div class="bva-item after-item">
+            <div class="bva-item-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg>
+            </div>
+            A precise 90-day growth roadmap
+          </div>
+          <div class="bva-item after-item">
+            <div class="bva-item-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg>
+            </div>
+            AI opportunities mapped to your ops
+          </div>
+          <div class="bva-item after-item">
+            <div class="bva-item-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg>
+            </div>
+            Predictable, scalable systems
+          </div>
+          <div class="bva-item after-item">
+            <div class="bva-item-icon">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg>
+            </div>
+            Confident decisions backed by data
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="section-divider"></div>
+
+
+<!-- WHAT'S INCLUDED -->
+<section>
+  <div class="section-inner">
+    <div class="includes-header fade-up">
+      <span class="section-eyebrow">What's Included</span>
+      <h2 class="section-h2">Not a report. A roadmap.</h2>
+      <p class="section-sub" style="margin: 0 auto; text-align:center;">Every deliverable is designed to give you one thing: the clarity to make the right decisions, faster.</p>
+    </div>
+
+    <div class="includes-grid stagger">
+      <div class="inc-card">
+        <div class="inc-number">01</div>
+        <div class="inc-title">Business Assessment</div>
+        <p class="inc-desc">A structured deep-dive into your model, positioning, competitive landscape, and the real constraints on your growth — things you may not have named yet.</p>
+      </div>
+      <div class="inc-card">
+        <div class="inc-number">02</div>
+        <div class="inc-title">Digital Assessment</div>
+        <p class="inc-desc">Full audit of your digital presence — website, conversion funnels, SEO, and paid channels. We find the leaks that are costing you leads every single day.</p>
+      </div>
+      <div class="inc-card">
+        <div class="inc-number">03</div>
+        <div class="inc-title">AI Assessment</div>
+        <p class="inc-desc">A map of exactly where AI can eliminate manual work, speed up decisions, and create leverage specific to your operations — not generic AI advice.</p>
+      </div>
+      <div class="inc-card">
+        <div class="inc-number">04</div>
+        <div class="inc-title">Growth Score</div>
+        <p class="inc-desc">A proprietary score across 6 dimensions that shows where you stand — and precisely what's keeping you from the next level of performance.</p>
+      </div>
+      <div class="inc-card">
+        <div class="inc-number">05</div>
+        <div class="inc-title">90-Day Roadmap</div>
+        <p class="inc-desc">A prioritized, sequenced action plan with 30/60/90-day milestones. No fluff — just the right moves, in the right order, with the reasoning behind each one.</p>
+      </div>
+      <div class="inc-card">
+        <div class="inc-number">06</div>
+        <div class="inc-title">Strategy Video</div>
+        <p class="inc-desc">A recorded walkthrough of your Blueprint so your team understands the strategy — and you can revisit the reasoning anytime decisions get hard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="section-divider"></div>
+
+
+<!-- PROCESS -->
+<section class="process-section">
+  <div class="section-inner">
+    <div class="process-header fade-up">
+      <span class="section-eyebrow">How It Works</span>
+      <h2 class="section-h2">Simple by design.<br><em>Powerful in practice.</em></h2>
+    </div>
+
+    <div class="process-steps stagger">
+      <div class="process-step">
+        <div class="step-connector"></div>
+        <div class="step-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5" width="20" height="14" rx="2"/>
+            <path d="M16 3v4M8 3v4"/>
+          </svg>
+        </div>
+        <div class="step-label">Purchase</div>
+        <div class="step-sub">One-time $97</div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-connector"></div>
+        <div class="step-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14,2 14,8 20,8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <div class="step-label">Intake Form</div>
+        <div class="step-sub">Tell us about your business</div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-connector"></div>
+        <div class="step-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
+        <div class="step-label">Deep Analysis</div>
+        <div class="step-sub">Personal review by our team</div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-connector"></div>
+        <div class="step-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="step-label">Blueprint Delivered</div>
+        <div class="step-sub">In 7 business days</div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+            <polyline points="16 7 22 7 22 13"/>
+          </svg>
+        </div>
+        <div class="step-label">Growth Call</div>
+        <div class="step-sub">Review your plan together</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="section-divider"></div>
+
+
+<!-- FOUNDER GUARANTEE -->
+<section class="guarantee-section">
+  <div class="section-inner">
+    <div class="guarantee-inner fade-up">
+      <div class="guarantee-badge">Launch Edition</div>
+      <div class="guarantee-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <polyline points="9,12 11,14 15,10"/>
+        </svg>
+      </div>
+      <h2 class="guarantee-title">Every Blueprint is personally<br>reviewed by the founder.</h2>
+      <p class="guarantee-text">
+        Your report is handcrafted — not AI-generated, not templated — and tailored specifically to your business model, your market, and your stage of growth. During this launch edition, I personally review every assessment before it reaches you. That's a level of attention most consultants charge thousands for.
+      </p>
+      <div class="guarantee-sig">
+        <div class="sig-avatar">E</div>
+        <div class="sig-text">
+          <div class="sig-name">Elevra Digital — Founder</div>
+          <div class="sig-role">Growth Intelligence &amp; Strategy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="section-divider"></div>
+
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-inner" style="text-align:center;">
+    <div class="fade-up" style="margin-bottom:56px;">
+      <span class="section-eyebrow">Pricing</span>
+      <h2 class="section-h2">One decision.<br><em>Complete clarity.</em></h2>
+      <p class="section-sub" style="margin: 0 auto; text-align:center;">One good insight from your Blueprint can be worth more than its cost many times over. The question isn't whether $97 is a good investment — it's how much longer you can afford to operate without this clarity.</p>
+    </div>
+
+    <div class="fade-up" style="display:flex; justify-content:center;">
+      <div class="pricing-card">
+        <div class="pricing-glow"></div>
+        <div class="pricing-label">Launch Edition · Limited Availability</div>
+        <div class="pricing-headline">The Growth Blueprint</div>
+        <div class="pricing-amount"><sup>$</sup>97</div>
+        <div class="pricing-note">One-time payment. Delivered in 7 business days.</div>
+
+        <div class="pricing-value-prop">
+          One decision informed by your Blueprint can pay for this investment many times over.
+        </div>
+
+        <ul class="pricing-features">
+          <li>
+            <span class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Full Business &amp; Competitive Assessment
+          </li>
+          <li>
+            <span class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Digital Presence &amp; Funnel Audit
+          </li>
+          <li>
+            <span class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></span>
+            AI Opportunities Map for Your Business
+          </li>
+          <li>
+            <span class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Proprietary 6-Dimension Growth Score
+          </li>
+          <li>
+            <span class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Prioritized 90-Day Action Roadmap
+          </li>
+          <li>
+            <span class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Recorded Strategy Video Walkthrough
+          </li>
+          <li>
+            <span class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Live Growth Call with Your Strategist
+          </li>
+          <li>
+            <span class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Personal Founder Review (Launch Edition)
+          </li>
+        </ul>
+
+        <a href="#" class="btn-primary" style="width:100%; justify-content:center; font-size:16px; padding:18px;">
+          See What's Holding My Business Back
+        </a>
+
+        <div class="pricing-guarantee-note">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 12s5-2.5 5-6.5V3L6.5 1 1.5 3v2.5C1.5 9.5 6.5 12 6.5 12z"/></svg>
+          Satisfaction guarantee included — see below
+        </div>
+
+        <div class="pricing-availability">
+          <span class="avail-dot"></span>
+          Limited spots available each month to ensure personal review quality
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="section-divider"></div>
+
+
+<!-- RISK REVERSAL -->
+<section class="risk-section">
+  <div class="section-inner">
+    <div class="risk-inner fade-up">
+      <div class="risk-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <h3 class="risk-title">Our Satisfaction Commitment</h3>
+      <p class="risk-text">
+        If after reviewing your Blueprint you <strong>genuinely believe it provided no valuable insight</strong> into your business — no clarity, no direction, nothing actionable — we'll refund your investment in full. No friction, no questions designed to make you feel bad. We stand behind the quality of this work. If it doesn't deliver, you don't pay.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<div class="section-divider"></div>
+
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="section-inner">
+    <div class="faq-header fade-up">
+      <span class="section-eyebrow">Questions</span>
+      <h2 class="section-h2">Everything you need to know.</h2>
+    </div>
+
+    <div class="faq-grid stagger">
+      <div class="faq-item">
+        <div class="faq-q">Who is this for?</div>
+        <p class="faq-a">Business owners and founders who feel like growth has stalled — or who are growing but not fast enough, and can't pinpoint exactly what's holding them back. If you're making decisions based on instinct rather than clear data and strategy, this Blueprint is for you.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">How long does delivery take?</div>
+        <p class="faq-a">Your Blueprint is delivered within 7 business days of completing your intake form. Because every assessment is personally reviewed, we ask for that time to do it properly — not quickly for its own sake.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Is this actually personalized to my business?</div>
+        <p class="faq-a">Yes. This is not a generic report. We review your specific business, your digital presence, your competitive landscape, and your stated goals. The output reflects your situation — not a template filled in with your name.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What happens after I purchase?</div>
+        <p class="faq-a">You'll receive an intake form immediately after purchase. Once completed, our team begins your assessment. In 7 business days, you'll receive your full Blueprint — followed by a live strategy call to review it together.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Do I get help implementing the roadmap?</div>
+        <p class="faq-a">The Blueprint gives you a clear, prioritized action plan and a strategy call to discuss it. Implementation support beyond that is available through our advisory services — which many clients choose after seeing what the Blueprint reveals.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Why is it only $97?</div>
+        <p class="faq-a">Because this is a launch edition. We're building our track record and keeping access intentionally accessible. The price will increase as availability decreases. More importantly — the value isn't in the price. It's in what you do with what you find out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="section-divider"></div>
+
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="section-inner fade-up">
+    <h2 class="final-h2">The answers are there.<br><span class="dim">You just need to see them.</span></h2>
+    <p class="final-sub">Stop running your business in the dark. Get clarity in 7 days.</p>
+    <a href="#pricing" class="btn-primary" style="font-size:16px; padding:18px 36px;">
+      Find My Biggest Growth Opportunities — $97
+    </a>
+    <p style="margin-top: 16px; font-size: 13px; color: var(--white-50);">Satisfaction guaranteed · Personal founder review · 7-day delivery</p>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div style="display:flex; align-items:center; gap:8px;">
+    <svg width="22" height="22" viewBox="0 0 60 60" fill="none">
+      <defs>
+        <linearGradient id="ftG" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#1535CC"/>
+          <stop offset="55%" stop-color="#1E90FF"/>
+          <stop offset="100%" stop-color="#00D8FF"/>
+        </linearGradient>
+      </defs>
+      <rect x="6" y="8" width="10" height="44" rx="2.5" fill="url(#ftG)"/>
+      <rect x="6" y="8" width="30" height="10" rx="2.5" fill="url(#ftG)"/>
+      <rect x="6" y="42" width="30" height="10" rx="2.5" fill="url(#ftG)"/>
+      <line x1="22" y1="33" x2="46" y2="9" stroke="url(#ftG)" stroke-width="7" stroke-linecap="round"/>
+      <polyline points="34,5 50,5 50,21" fill="none" stroke="url(#ftG)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span style="font-weight:700; letter-spacing:0.06em; font-size:12px;">ELEVRA DIGITAL</span>
+  </div>
+  <span>© 2025 Elevra Digital. All rights reserved.</span>
+  <div style="display:flex; gap:24px;">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up, .stagger').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href').slice(1);
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  const card = document.querySelector('.blueprint-card');
+  if (card) {
+    document.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) / window.innerWidth;
+      const dy = (e.clientY - cy) / window.innerHeight;
+      card.style.transform = `perspective(1000px) rotateY(${-8 + dx * 6}deg) rotateX(${4 - dy * 4}deg) translateY(${Math.sin(Date.now() / 2000) * 8}px)`;
+    });
+  }
+</script>
+</body>
+</html>
